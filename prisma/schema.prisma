@@ -1,0 +1,45 @@
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+model User {
+    id        String   @id @default(uuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    username  String   @db.VarChar(255)
+    password  String
+    email     String   @unique
+    profile   Profile?
+
+    roleId String
+    role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    @@index([roleId])
+}
+
+model Profile {
+    id           String  @id @default(uuid())
+    user         User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    userId       String  @unique
+    address      String
+    mobileNumber String?
+    img          String?
+
+    @@index([userId])
+}
+
+model Role {
+    id   String @id @default(uuid())
+    user User[]
+    role String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
