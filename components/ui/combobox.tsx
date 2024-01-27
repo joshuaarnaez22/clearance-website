@@ -41,7 +41,7 @@ export function Combobox({ options, value, onChange, name }: ComboboxProps) {
             name={name}
           >
             {value ? (
-              options.find((option: any) => option.value === value)?.label
+              options.find((option: any) => option.label === value)?.label
             ) : (
               <div className=" font-medium opacity-40">Select option...</div>
             )}
@@ -60,7 +60,7 @@ export function Combobox({ options, value, onChange, name }: ComboboxProps) {
                   onSelect={() => {
                     onChange(
                       option.value === value ? "" : option.value,
-                      option.id
+                      option.label
                     );
                     setOpen(false);
                   }}
@@ -68,7 +68,7 @@ export function Combobox({ options, value, onChange, name }: ComboboxProps) {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === option.value ? "opacity-100" : "opacity-0"
+                      value === option.label ? "opacity-100" : "opacity-0"
                     )}
                   />
                   {option.label}

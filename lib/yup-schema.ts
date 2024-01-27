@@ -6,10 +6,27 @@ export const UserEmailSchema = yup.object().shape({
     .trim() // Remove leading and trailing whitespace
     .email("Must be a valid email address")
     .required("Email is required"),
-  fname: yup.string().required("Firstname is required"),
-  lname: yup.string().required("Lastname is required"),
-  role: yup
-    .string()
-    .oneOf(["admin", "staff", "user"], "Role is required")
-    .required("Role is required"),
+  firstname: yup.string().required("Firstname is required"),
+  lastname: yup.string().required("Lastname is required"),
+  password: yup.string().required("Password is required"),
+  username: yup.string().required("Username is required"),
+  role: yup.string().required("Role is required"),
+});
+
+export const ClearanceNameSchema = yup.object().shape({
+  name: yup.string().required("Clearance name is required"),
+});
+
+export const ClearanceSchema = yup.object().shape({
+  name: yup.string().required("Clearance is required"),
+  description: yup.string().required("Description is required"),
+});
+
+export const RequirementSchema = yup.object().shape({
+  name: yup.string().required("Requirement name is required"),
+  description: yup.string().required("Requirement description is required"),
+});
+
+export const RequirementNameSchema = yup.object().shape({
+  name: yup.string().required("Clearance name is required"),
 });

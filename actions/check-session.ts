@@ -8,3 +8,10 @@ export const checkSession = async () => {
 
   return userId;
 };
+
+export const checkSessionRole = async () => {
+  const session = (await getServerSession(authOptions)) as SessionObject;
+  const userRole = session?.user?.role || null;
+
+  return userRole;
+};

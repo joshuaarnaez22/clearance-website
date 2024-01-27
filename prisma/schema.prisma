@@ -28,9 +28,12 @@ model Profile {
     id           String  @id @default(uuid())
     user         User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
     userId       String  @unique
-    address      String
-    mobileNumber String?
+    address      String?
+    mobilenumber String?
     img          String?
+    firstname    String?
+    lastname     String?
+    gender       String?
 
     @@index([userId])
 }
@@ -42,4 +45,28 @@ model Role {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+model Clearance {
+    id           String        @id @default(uuid())
+    name         String
+    description  String?       @db.Text
+    requirements Requirement[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Requirement {
+    id          String    @id @default(uuid())
+    name        String?
+    description String?   @db.Text
+    url         String?
+    clearanceId String
+    clearance   Clearance @relation(fields: [clearanceId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([clearanceId])
 }

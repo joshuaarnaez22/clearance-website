@@ -83,7 +83,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 3600,
+    maxAge: 86400,
   },
   debug: process.env.NODE_ENV === "development",
 };

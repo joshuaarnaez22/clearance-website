@@ -1,5 +1,5 @@
 "use client";
-import { Layout, Users } from "lucide-react";
+import { GalleryHorizontalEnd, Layout, Users } from "lucide-react";
 import React from "react";
 import AdminSidebarItem from "./sidebar-item";
 
@@ -7,6 +7,11 @@ const AdminSidebarRoutes = () => {
   const adminRoutes = [
     { icon: Layout, href: "/admin/dashboard", label: "Dashboard" },
     { icon: Users, href: "/admin/users", label: "Users" },
+    {
+      icon: GalleryHorizontalEnd,
+      href: "/admin/clearance",
+      label: "Clearance",
+    },
   ];
 
   return (

@@ -17,9 +17,9 @@ export async function GET() {
     //     role: true,
     //   },
     // });
-    // return NextResponse.json({
-    //   user: { role: user?.role, id: user?.id, email: user?.email },
-    // });
+    return NextResponse.json({
+      // user: { role: user?.role, id: user?.id, email: user?.email },
+    });
   } catch (error) {
     console.log("[ERROR_IN_GETTING_USER]", error);
 

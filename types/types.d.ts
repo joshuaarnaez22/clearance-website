@@ -1,3 +1,5 @@
+import { Requirement } from "@prisma/client";
+
 interface UserObject {
   id: string;
   username: string;
@@ -27,5 +29,17 @@ export interface ComboboxProps {
   }[];
   value?: string;
   name: string;
-  onChange: (value: string, id: string) => void;
+  onChange: (value: string, label: string) => void;
+}
+
+export interface ClearanceProps {
+  id: string;
+  name: string;
+  requirements: Requirement[];
+}
+
+export interface Requirements {
+  clearanceId: string;
+  requirementId: string;
+  requirement: Requirement;
 }

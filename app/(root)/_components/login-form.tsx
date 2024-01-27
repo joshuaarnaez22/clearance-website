@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { getUserById } from "@/actions/client-actions/get-userId";
+import { getUserById } from "@/actions/client-actions/user-actions/get-userId";
 import { SessionObject } from "@/types/types";
 
 const LoginForm = () => {
