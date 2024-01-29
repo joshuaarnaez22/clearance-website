@@ -1,5 +1,5 @@
 "use client";
-import { GalleryHorizontalEnd, Layout, Users } from "lucide-react";
+import { GalleryHorizontalEnd, Layout, Users, Volume2 } from "lucide-react";
 import React from "react";
 import AdminSidebarItem from "./sidebar-item";
 
@@ -11,6 +11,11 @@ const AdminSidebarRoutes = () => {
       icon: GalleryHorizontalEnd,
       href: "/admin/clearance",
       label: "Clearance",
+    },
+    {
+      icon: Volume2,
+      href: "/admin/users",
+      label: "Announcements",
     },
   ];
 
