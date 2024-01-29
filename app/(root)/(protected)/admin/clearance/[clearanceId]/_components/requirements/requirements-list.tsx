@@ -12,7 +12,7 @@ const RequirementsList = ({
   clearanceId: string;
 }) => {
   return (
-    <div className=" flex items-center gap-x-2 bg-sky-100 border-sky-700 text-sky-700 rounded-md mb-4 text-sm w-[672px] ">
+    <div className="w-full max-w-lg flex items-center gap-x-2 bg-sky-100 border-sky-700 text-sky-700 rounded-md mb-4 text-sm  ">
       <div className="p-3 border-r border-r-sky-200  rounded-md ">
         <NotebookPen className="h-5 w-5" />
       </div>

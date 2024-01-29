@@ -91,11 +91,12 @@ const RequirementContent = ({
           ) : (
             <Card className="flex flex-col items-center justify-center py-4">
               {attachments.length !== 0 ? (
-                <div>
+                <div className="w-full px-6">
                   {attachments.map((attachment) => (
                     <AttachmentList
                       url={attachment.url!}
                       name={attachment.name}
+                      id={attachment.id}
                       key={attachment.id}
                     />
                   ))}

@@ -11,7 +11,7 @@ const AttachmentList = ({
   id: string;
 }) => {
   return (
-    <div className=" flex items-center gap-x-2 bg-sky-100 border-sky-700 text-sky-700 rounded-md mb-4 text-sm w-[672px] transition-all">
+    <div className="w-full flex items-center gap-x-2 bg-sky-100 border-sky-700 text-sky-700 rounded-md mb-4 text-sm  transition-all">
       <div className="p-3 border-r border-r-sky-200  rounded-md ">
         <Paperclip className="h-5 w-5" />
       </div>
