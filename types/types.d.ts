@@ -1,4 +1,4 @@
-import { Requirement } from "@prisma/client";
+import { Attachment, Requirement } from "@prisma/client";
 
 interface UserObject {
   id: string;
@@ -35,11 +35,12 @@ export interface ComboboxProps {
 export interface ClearanceProps {
   id: string;
   name: string;
-  requirements: Requirement[];
+  description?: string;
 }
 
 export interface Requirements {
-  clearanceId: string;
   requirementId: string;
-  requirement: Requirement;
+  requirement: Requirement & {
+    attachments: Attachment[];
+  };
 }

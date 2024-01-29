@@ -58,15 +58,29 @@ model Clearance {
 }
 
 model Requirement {
-    id          String    @id @default(uuid())
+    id          String  @id @default(uuid())
     name        String?
-    description String?   @db.Text
-    url         String?
+    description String? @db.Text
+
     clearanceId String
-    clearance   Clearance @relation(fields: [clearanceId], references: [id], onDelete: Cascade)
+    clearance   Clearance    @relation(fields: [clearanceId], references: [id], onDelete: Cascade)
+    attachments Attachment[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@index([clearanceId])
+}
+
+model Attachment {
+    id   String  @id @default(uuid())
+    name String  @db.Text
+    url  String?
+
+    requirmentId String
+    requirement  Requirement @relation(fields: [requirmentId], references: [id], onDelete: Cascade)
+    updatedAt    DateTime    @updatedAt
+    createdAt    DateTime    @default(now())
+
+    @@index([requirmentId])
 }

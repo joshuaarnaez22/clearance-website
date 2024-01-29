@@ -1,21 +1,13 @@
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
-import { checkSession } from "@/actions/check-session";
-import { redirect } from "next/navigation";
-import { getAllUser } from "@/actions/server-actions/user-actions/get-all-users";
+import { getAllClearance } from "@/actions/server-actions/clearance-actions/get-all-clearance";
 
 const ClearanceTablePage = async () => {
-  const userId = await checkSession();
-
-  if (!userId) {
-    return redirect("/");
-  }
-
-  const users = await getAllUser();
+  const clearance = await getAllClearance();
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={users} />
+      <DataTable columns={columns} data={clearance} />
     </div>
   );
 };

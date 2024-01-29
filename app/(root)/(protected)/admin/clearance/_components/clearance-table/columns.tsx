@@ -1,65 +1,90 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { Role } from "@prisma/client";
+import { Clearance, Requirement } from "@prisma/client";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
 
-export type UsersProps = {
-  id: string;
-  createdAt: any;
-  updatedAt: any;
-  email: string;
-  username: string;
-  role: Role;
+import TimeAgo from "javascript-time-ago";
+
+// English.
+import en from "javascript-time-ago/locale/en";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+TimeAgo.addDefaultLocale(en);
+const timeAgo = new TimeAgo("en-US");
+
+export type ClearanceProps = Clearance & {
+  requirements: Requirement[];
 };
 
-export const columns: ColumnDef<UsersProps>[] = [
+export const columns: ColumnDef<ClearanceProps>[] = [
   {
     accessorKey: "id",
     header: "ID",
   },
   {
-    accessorKey: "email",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "role",
-    accessorFn: (row) => row.role.role,
+    accessorKey: "requirements",
+    accessorFn: (row) => row.requirements,
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Role
+          Requirements
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const userRole = row.getValue("role") as string;
+      const req = row.getValue("requirements") as string;
 
       return (
+        <div className="font-medium ">
+          {req.length} {req.length > 1 ? "requirements" : "requirement"}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Created At
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const createdAt = row.getValue("createdAt") as Date;
+      return (
         <div className="text-right font-medium items-center flex justify-start ">
-          <Badge>{userRole}</Badge>
+          <Badge>{timeAgo.format(new Date(createdAt))}</Badge>
         </div>
       );
     },
@@ -77,12 +102,12 @@ export const columns: ColumnDef<UsersProps>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {/* <Link href={`/teacher/courses/${id}`}> */}
-            <DropdownMenuItem className=" font-bold">
-              <Pencil className="h-4 w-4 mr-2" />
-              Edit
-            </DropdownMenuItem>
-            {/* </Link> */}
+            <Link href={`/admin/clearance/${id}`}>
+              <DropdownMenuItem className=" font-bold">
+                <Pencil className="h-4 w-4 mr-2" />
+                Edit
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

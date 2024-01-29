@@ -22,11 +22,11 @@ const RequirementPage = async ({
   if (!requirement) {
     return redirect("/");
   }
+
   return (
     <div className="p-6">
       <GoBack url={`/admin/clearance/${params.clearanceId}`} />
       <RequirementForm
-        clearanceId={params.clearanceId}
         requirementId={params.requirementId}
         requirement={requirement}
       />

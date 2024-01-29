@@ -5,7 +5,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 interface FileUploadProps {
-  onChange: (url: string) => void;
+  onChange: (res: any) => void;
   endpoint: keyof typeof ourFileRouter;
 }
 const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
@@ -13,7 +13,7 @@ const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
     <UploadDropzone
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
-        onChange(res?.[0].url as string);
+        onChange(res);
         console.log("upload complete");
       }}
       onUploadError={(error: Error) => {

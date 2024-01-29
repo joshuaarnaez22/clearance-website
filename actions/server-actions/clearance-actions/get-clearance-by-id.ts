@@ -8,6 +8,7 @@ export const getClearanceById = async (id: string) => {
     select: {
       id: true,
       name: true,
+      description: true,
       requirements: true,
     },
   });
@@ -23,6 +24,9 @@ export const getRequirementById = async (
     where: {
       id: reqId,
       clearanceId,
+    },
+    include: {
+      attachments: true,
     },
   });
 

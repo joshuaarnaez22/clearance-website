@@ -6,7 +6,7 @@ import React from "react";
 const CreateClearanceFooter = ({ isSubmitting }: { isSubmitting: boolean }) => {
   return (
     <div className="space-x-2">
-      <Link href="/admin/users">
+      <Link href="/admin/clearance">
         <Button type="button" variant="ghost">
           Cancel
         </Button>

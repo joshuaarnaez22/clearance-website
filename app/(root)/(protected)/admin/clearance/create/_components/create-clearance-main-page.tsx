@@ -23,7 +23,6 @@ const CreateClearanceMainPage = () => {
   const onSubmit = async (data: any) => {
     try {
       const response = await createClearance(data);
-      console.log(response);
       router.push(`/admin/clearance/${response.id}`);
       toast.success("Clearance created.");
     } catch (error) {

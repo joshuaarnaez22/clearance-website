@@ -11,11 +11,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Requirements } from "@/types/types";
 
-const RequirementForm = ({
-  clearanceId,
-  requirementId,
-  requirement,
-}: Requirements) => {
+const RequirementForm = ({ requirementId, requirement }: Requirements) => {
   const methods = useForm({
     resolver: yupResolver(RequirementSchema),
     defaultValues: {
@@ -35,8 +31,11 @@ const RequirementForm = ({
         <RequirementHeader />
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <RequirementContent />
-            <RequirementFooter isSubmitting={isSubmitting} id={clearanceId} />
+            <RequirementContent
+              requirementId={requirementId}
+              attachments={requirement.attachments}
+            />
+            <RequirementFooter isSubmitting={isSubmitting} />
           </form>
         </FormProvider>
       </Card>

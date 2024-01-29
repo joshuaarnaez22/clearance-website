@@ -9,25 +9,39 @@ import ClearanceFooter from "./clearance-form-footer";
 import { ClearanceSchema } from "@/lib/yup-schema";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { updateClearance } from "@/actions/client-actions/clearance-actions/create-clearance";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-const ClearanceForm = ({ id, requirements, name }: ClearanceProps) => {
-  const methods = useForm({
+const ClearanceForm = ({ id, name, description }: ClearanceProps) => {
+  const router = useRouter();
+  const clearanceMethods = useForm({
     resolver: yupResolver(ClearanceSchema),
     defaultValues: {
       name,
+      description: description || "",
     },
   });
-  const { handleSubmit, reset, formState } = methods;
+  const { handleSubmit, formState } = clearanceMethods;
   const { isSubmitting } = formState;
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: any) => {
+    try {
+      await updateClearance(id, data);
+      toast.success("Clearance updated");
+      router.refresh();
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error);
+    }
+  };
   return (
-    <div className="mt-10">
+    <div>
       <Card className="p-6">
         <ClearanceHeader />
-        <FormProvider {...methods}>
+        <FormProvider {...clearanceMethods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <ClearanceContent requirements={requirements} id={id} />
+            <ClearanceContent />
             <ClearanceFooter isSubmitting={isSubmitting} />
           </form>
         </FormProvider>
