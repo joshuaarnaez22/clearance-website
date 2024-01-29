@@ -13,6 +13,7 @@ import { PlusCircle } from "lucide-react";
 import { createAttachments } from "@/actions/client-actions/clearance-actions/create-attachments";
 import { Attachment } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import AttachmentList from "./attachment-list";
 const RequirementContent = ({
   requirementId,
   attachments,
@@ -88,9 +89,24 @@ const RequirementContent = ({
               }}
             />
           ) : (
-            <Card>
-              TODO
-              {attachments.length}
+            <Card className="flex flex-col items-center justify-center py-4">
+              {attachments.length !== 0 ? (
+                <div>
+                  {attachments.map((attachment) => (
+                    <AttachmentList
+                      url={attachment.url!}
+                      name={attachment.name}
+                      key={attachment.id}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="h-[200px] flex justify-center items-center">
+                  <p className="text-sm font-semibold text-muted-foreground">
+                    No attachment
+                  </p>
+                </div>
+              )}
             </Card>
           )}
         </div>
