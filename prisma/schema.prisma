@@ -84,3 +84,14 @@ model Attachment {
 
     @@index([requirmentId])
 }
+
+model Announcement {
+    id       String    @id @default(uuid())
+    title    String    @db.Text
+    content  String?
+    from     DateTime?
+    to       DateTime?
+    location String?
+    action   String?
+    url      String?
+}

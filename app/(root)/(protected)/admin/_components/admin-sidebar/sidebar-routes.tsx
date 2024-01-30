@@ -14,7 +14,7 @@ const AdminSidebarRoutes = () => {
     },
     {
       icon: Volume2,
-      href: "/admin/users",
+      href: "/admin/announcements",
       label: "Announcements",
     },
   ];

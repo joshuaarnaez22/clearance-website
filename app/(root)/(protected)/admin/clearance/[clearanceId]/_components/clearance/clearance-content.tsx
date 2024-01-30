@@ -1,14 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import FormInput from "@/components/ui/form-input";
-import Textarea from "@/components/ui/textarea";
-import { Requirement } from "@prisma/client";
-import { divide } from "lodash";
-import { PlusCircle } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 
 const ClearanceContent = () => {
   return (
@@ -24,7 +17,8 @@ const ClearanceContent = () => {
         </div>
         <div className="flex flex-col space-y-2">
           <p className="text-md text-slate-500 font-medium">Description</p>
-          <Textarea
+          <FormInput
+            type="text"
             placeholder="e.g Swift clearance for seamless compliance."
             name="description"
           />

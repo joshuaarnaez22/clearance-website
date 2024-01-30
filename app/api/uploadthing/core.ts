@@ -14,6 +14,9 @@ export const ourFileRouter = {
   requirementsAttachments: f(["image", "pdf", "text"])
     .middleware(() => authHandler())
     .onUploadComplete(() => {}),
+  announcementThumbnail: f(["image"])
+    .middleware(() => authHandler())
+    .onUploadComplete(() => {}),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

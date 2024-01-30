@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { CardContent } from "@/components/ui/card";
 import { Combobox } from "@/components/ui/combobox";
 import FormInput from "@/components/ui/form-input";
-import { passwordGenerate, roleArray } from "@/lib/utils";
+import { passwordGenerate } from "@/lib/utils";
 import { Role } from "@prisma/client";
 import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";

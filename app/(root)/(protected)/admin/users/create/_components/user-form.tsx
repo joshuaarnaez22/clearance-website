@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 
 import { UserEmailSchema } from "@/lib/yup-schema";
@@ -23,7 +24,7 @@ const UserForm = () => {
       password: passwordGenerate(8),
     },
   });
-  const { handleSubmit, reset, formState } = methods;
+  const { handleSubmit, formState } = methods;
   const { isSubmitting } = formState;
 
   const onSubmit = async (data: any) => {

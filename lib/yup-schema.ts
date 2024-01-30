@@ -30,3 +30,26 @@ export const RequirementSchema = yup.object().shape({
 export const RequirementNameSchema = yup.object().shape({
   name: yup.string().required("Clearance name is required"),
 });
+
+export const AnnouncementSchema = yup.object().shape({
+  title: yup.string().required("Title is required"),
+  content: yup.string().required("Content is required"),
+  from: yup.date().nullable().typeError("Start date must be a valid date"),
+  to: yup
+    .date()
+    .nullable()
+    .when("from", ([from]) => {
+      return from
+        ? yup
+            .date()
+            .required("End date is required")
+            .typeError("End date must be a valid date")
+        : yup.date().nullable().typeError("End date must be a valid date");
+    }),
+  location: yup.string(),
+  action: yup.string(),
+});
+
+export const AnnouncementTitleSchema = yup.object().shape({
+  title: yup.string().required("Title is required"),
+});
