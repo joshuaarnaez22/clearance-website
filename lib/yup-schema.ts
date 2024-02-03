@@ -53,3 +53,16 @@ export const AnnouncementSchema = yup.object().shape({
 export const AnnouncementTitleSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
 });
+
+export const UserProfileSchema = yup.object().shape({
+  username: yup.string().required("Title is required"),
+  email: yup.string().required("Title is required"),
+  profile: yup.object().nullable().shape({
+    address: yup.string(),
+    mobilenumber: yup.string(),
+    img: yup.string(),
+    firstname: yup.string(),
+    lastname: yup.string(),
+    gender: yup.string(),
+  }),
+});

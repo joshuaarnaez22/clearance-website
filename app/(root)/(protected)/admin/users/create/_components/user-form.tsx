@@ -31,6 +31,7 @@ const UserForm = () => {
     try {
       await createUser(data);
       toast.success("User created");
+      router.refresh();
       router.push("/admin/users");
     } catch (error: any) {
       if (error.response.status === 409) {

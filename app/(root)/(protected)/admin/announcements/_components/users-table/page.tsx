@@ -2,7 +2,7 @@ import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import { checkSession } from "@/actions/check-session";
 import { redirect } from "next/navigation";
-import { getAllUser } from "@/actions/server-actions/user-actions/get-all-users";
+import { getAllAnnouncements } from "@/actions/server-actions/announcement-actions/get-all-announcements";
 
 const AnnouncenentTablePage = async () => {
   const userId = await checkSession();
@@ -11,11 +11,11 @@ const AnnouncenentTablePage = async () => {
     return redirect("/");
   }
 
-  const users = await getAllUser();
+  const announcements = await getAllAnnouncements();
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={users} />
+      <DataTable columns={columns} data={announcements} />
     </div>
   );
 };

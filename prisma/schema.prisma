@@ -94,4 +94,7 @@ model Announcement {
     location String?
     action   String?
     url      String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

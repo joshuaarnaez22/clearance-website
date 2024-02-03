@@ -19,10 +19,12 @@ const DateRangePicker = ({
   className,
   dateRange,
   name,
+  defaultValue,
 }: {
   className?: React.HTMLAttributes<HTMLDivElement>;
   dateRange: (date: DateRange) => void;
   name: string;
+  defaultValue?: DateRange | null;
 }) => {
   const { formState } = useFormContext();
   const { errors } = formState || {};
@@ -32,6 +34,11 @@ const DateRangePicker = ({
     if (date) dateRange(date);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
+
+  React.useEffect(() => {
+    if (defaultValue) setDate(defaultValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue]);
 
   return (
     <div className={cn("grid gap-2", className)}>

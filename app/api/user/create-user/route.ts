@@ -1,6 +1,7 @@
 import { checkSessionRole } from "@/actions/check-session";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { hashedPassword } from "@/lib/hash";
 export async function POST(req: NextRequest) {
   try {
     const newUser = await req.json();
@@ -22,12 +23,13 @@ export async function POST(req: NextRequest) {
 
     const {
       email,
-      password,
       firstname,
       lastname,
       username,
       role: userRole,
     } = newUser.data;
+
+    const password = hashedPassword(newUser.data.password);
     await prisma.user.create({
       data: {
         email,

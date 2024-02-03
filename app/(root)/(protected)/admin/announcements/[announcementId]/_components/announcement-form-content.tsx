@@ -17,19 +17,24 @@ import { useFormContext } from "react-hook-form";
 const AnnouncementFormContent = ({
   announcementId,
   url,
+  defaultValues,
 }: {
   url?: string;
   announcementId: string;
+  defaultValues?: DateRange | null;
 }) => {
   const router = useRouter();
   const { setValue } = useFormContext();
   const [addThumbnail, setAddThumbnail] = useState(false);
+
   const dateRange = (date: DateRange) => {
     if (date.from) {
       setValue("from", date.from, { shouldValidate: true });
     }
     if (date.to) {
       setValue("to", date.to, { shouldValidate: true });
+    } else {
+      setValue("to", null);
     }
   };
 
@@ -82,7 +87,11 @@ const AnnouncementFormContent = ({
         </div>
         <div className="flex flex-col space-y-2">
           <p className="text-md text-slate-500 font-medium">Date range</p>
-          <DateRangePicker dateRange={dateRange} name="to" />
+          <DateRangePicker
+            dateRange={dateRange}
+            name="to"
+            defaultValue={defaultValues}
+          />
         </div>
         <div className="flex flex-col space-y-2">
           <div className="flex items-center justify-between ">
