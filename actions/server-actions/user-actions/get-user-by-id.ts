@@ -10,7 +10,16 @@ export const getUserByIdServer = async (id: string) => {
         id: true,
         username: true,
         email: true,
-        profile: true,
+        profile: {
+          select: {
+            address: true,
+            mobilenumber: true,
+            img: true,
+            firstname: true,
+            lastname: true,
+            gender: true,
+          },
+        },
       },
     });
     return user;

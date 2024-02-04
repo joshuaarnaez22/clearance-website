@@ -49,6 +49,7 @@ export const columns: ColumnDef<Announcement>[] = [
   },
   {
     accessorKey: "from",
+    header: "From",
     accessorFn: (row) => row.from,
     cell: ({ row }) => {
       const from = row.getValue("from") as Date;
@@ -60,6 +61,7 @@ export const columns: ColumnDef<Announcement>[] = [
   },
   {
     accessorKey: "to",
+    header: "To",
     accessorFn: (row) => row.to,
     cell: ({ row }) => {
       const to = row.getValue("to") as Date;

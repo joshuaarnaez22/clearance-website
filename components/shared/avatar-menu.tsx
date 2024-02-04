@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Confirmation from "./confirmation";
 import { Settings } from "lucide-react";
+import ChangePassword from "./change-password";
 
 const AvatarMenu = () => {
   return (
@@ -29,6 +30,18 @@ const AvatarMenu = () => {
           Settings
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onSelect={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <ChangePassword>
+            <div className="flex justify-between w-full">
+              Change password
+              <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
+            </div>
+          </ChangePassword>
+        </DropdownMenuItem>
         <DropdownMenuItem
           className=" text-red-600 w-full"
           onSelect={(e) => {

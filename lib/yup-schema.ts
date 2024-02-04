@@ -58,11 +58,16 @@ export const UserProfileSchema = yup.object().shape({
   username: yup.string().required("Title is required"),
   email: yup.string().required("Title is required"),
   profile: yup.object().nullable().shape({
-    address: yup.string(),
-    mobilenumber: yup.string(),
-    img: yup.string(),
-    firstname: yup.string(),
-    lastname: yup.string(),
-    gender: yup.string(),
+    address: yup.string().nullable(),
+    mobilenumber: yup.string().nullable(),
+    img: yup.string().nullable(),
+    firstname: yup.string().nullable(),
+    lastname: yup.string().nullable(),
+    gender: yup.string().nullable(),
   }),
+});
+
+export const ChangePasswordSchema = yup.object().shape({
+  oldPassword: yup.string().required("Old password is required"),
+  newPassword: yup.string().required("New password is required"),
 });

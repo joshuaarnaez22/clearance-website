@@ -6,7 +6,7 @@ const RequirementFormHeader = () => {
     <CardHeader>
       <CardTitle className="text-2xl font-medium">Requirement Setup</CardTitle>
       <CardDescription>
-        Customize settings for Requirement Setup.
+        Customize settings for requirement Setup.
       </CardDescription>
     </CardHeader>
   );

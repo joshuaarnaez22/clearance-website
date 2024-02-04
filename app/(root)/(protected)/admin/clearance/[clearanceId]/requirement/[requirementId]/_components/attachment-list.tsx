@@ -1,4 +1,4 @@
-import { Paperclip, Trash } from "lucide-react";
+import { Paperclip, X } from "lucide-react";
 import React from "react";
 
 const AttachmentList = ({
@@ -24,8 +24,8 @@ const AttachmentList = ({
       <div className=" hover:underline" onClick={(e) => openWindow(e)}>
         {name}
       </div>
-      <div className="ml-auto pr-2 flex items-center gap-x-2">
-        <Trash className="h-5 w-5 cursor-pointer hover:opacity-75 transition" />
+      <div className="ml-auto  flex items-center justify-center pr-2">
+        <X className="h-5 w-5 cursor-pointer hover:opacity-75 transition " />
       </div>
     </div>
   );

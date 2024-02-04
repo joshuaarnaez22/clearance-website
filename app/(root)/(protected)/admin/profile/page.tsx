@@ -1,8 +1,8 @@
 import { checkSession } from "@/actions/check-session";
-import { getUserById } from "@/actions/client-actions/user-actions/get-userId";
 import { getUserByIdServer } from "@/actions/server-actions/user-actions/get-user-by-id";
 import { redirect } from "next/navigation";
 import React from "react";
+import ProfileForm from "./_components/profile-form";
 
 const AdminProfilePage = async () => {
   const userId = await checkSession();
@@ -12,9 +12,20 @@ const AdminProfilePage = async () => {
   }
 
   const user = await getUserByIdServer(userId);
-  console.log(user);
+  if (!user) {
+    return redirect("/");
+  }
 
-  return <div>ProfilePage</div>;
+  return (
+    <div className="p-6 ">
+      <ProfileForm
+        id={user.id}
+        email={user.email}
+        username={user.username}
+        profile={user.profile}
+      />
+    </div>
+  );
 };
 
 export default AdminProfilePage;
