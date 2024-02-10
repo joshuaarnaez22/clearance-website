@@ -42,7 +42,7 @@ export const columns: ColumnDef<UsersProps>[] = [
   },
   {
     accessorKey: "role",
-    accessorFn: (row) => row.role.role,
+    accessorFn: (row) => row.role,
     header: ({ column }) => {
       return (
         <Button

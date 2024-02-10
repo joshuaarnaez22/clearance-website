@@ -23,9 +23,6 @@ export const authOptions: NextAuthOptions = {
             where: {
               email: credentials.email,
             },
-            include: {
-              role: true,
-            },
           });
 
           if (!user || !user?.password) {
@@ -48,8 +45,7 @@ export const authOptions: NextAuthOptions = {
           return {
             id: removedSensitiveData.id,
             username: removedSensitiveData.username,
-            role: removedSensitiveData.role.role,
-            roleId: removedSensitiveData.roleId,
+            role: removedSensitiveData.role,
             email: removedSensitiveData.email,
           };
         } catch (error) {
@@ -65,6 +61,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.role = user.role;
         token.user = user;
+        token.campus = ["c1", "c2", "c3", "c4", "c5", "c6"];
       }
       return token;
     },
@@ -73,6 +70,7 @@ export const authOptions: NextAuthOptions = {
       if (token && session.user) {
         session.user.role = token.role;
         session.user = token.user;
+        session.user.campus = token.campus;
       }
       return session;
     },

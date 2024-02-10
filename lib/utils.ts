@@ -6,9 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const roleArray = [
-  { id: "1", label: "Admin", value: "admin" },
-  { id: "2", label: "User", value: "user" },
-  { id: "3", label: "Staff", value: "staff" },
+  { label: "Admin", value: "admin" },
+  { label: "User", value: "user" },
+  { label: "Staff", value: "staff" },
 ];
 
 export const passwordGenerate = (length: number) => {

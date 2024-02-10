@@ -1,18 +1,15 @@
 "use client";
-import { getRoles } from "@/actions/client-actions/user-actions/get-roles";
 import { Badge } from "@/components/ui/badge";
 import { CardContent } from "@/components/ui/card";
 import { Combobox } from "@/components/ui/combobox";
 import FormInput from "@/components/ui/form-input";
-import { passwordGenerate } from "@/lib/utils";
-import { Role } from "@prisma/client";
-import React, { useEffect, useState } from "react";
+import { passwordGenerate, roleArray } from "@/lib/utils";
+import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 const UserFormContent = () => {
   const [role, setRole] = useState("");
   const { setValue } = useFormContext();
-  const [roles, setRoles] = useState<any[]>([]);
 
   const selectedChange = (value: string, label: string) => {
     setValue("role", value, { shouldValidate: true });
@@ -22,19 +19,6 @@ const UserFormContent = () => {
     const randomPassword = passwordGenerate(8);
     setValue("password", randomPassword, { shouldValidate: true });
   };
-
-  useEffect(() => {
-    const roles = async () => {
-      const { data }: { data: Role[] } = await getRoles();
-      const allRoles = data.map((role: Role) => ({
-        id: role.id,
-        label: role.role,
-        value: role.id,
-      }));
-      setRoles(allRoles);
-    };
-    roles();
-  }, []);
 
   return (
     <CardContent>
@@ -55,7 +39,7 @@ const UserFormContent = () => {
           <p className="text-md text-slate-500 font-medium">Role</p>
           <Combobox
             name="role"
-            options={roles}
+            options={roleArray}
             value={role}
             onChange={selectedChange}
           />

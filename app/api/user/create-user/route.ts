@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       data: {
         email,
         password,
-        roleId: userRole,
+        role: userRole,
         username,
         profile: {
           create: {

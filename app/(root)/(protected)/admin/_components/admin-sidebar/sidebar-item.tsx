@@ -20,7 +20,7 @@ const AdminSidebarItem = ({
     <Link
       href={href}
       className={cn(
-        "flex h-full w-full items-center text-slate-500 text-sm font-bold pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
+        "flex h-full w-full items-center text-slate-500 text-sm font-bold pl-6 transition-all hover:text-slate-600 hover:bg-slate-400/20",
         isActive &&
           "text-sky-700 bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700/20"
       )}

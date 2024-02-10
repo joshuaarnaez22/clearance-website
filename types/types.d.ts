@@ -23,7 +23,6 @@ export type InputProps = {
 
 export interface ComboboxProps {
   options: {
-    id: string;
     label: string;
     value: string;
   }[];

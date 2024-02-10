@@ -1,5 +1,12 @@
 "use client";
-import { GalleryHorizontalEnd, Layout, User, Users, Volume2 } from "lucide-react";
+import {
+  GalleryHorizontalEnd,
+  Layout,
+  School,
+  User,
+  Users,
+  Volume2,
+} from "lucide-react";
 import React from "react";
 import AdminSidebarItem from "./sidebar-item";
 
@@ -16,6 +23,12 @@ const AdminSidebarRoutes = () => {
       icon: Volume2,
       href: "/admin/announcements",
       label: "Announcements",
+    },
+
+    {
+      icon: School,
+      href: "/admin/campuses",
+      label: "Campuses",
     },
     {
       icon: User,

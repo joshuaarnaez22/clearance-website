@@ -14,8 +14,12 @@ import {
 import Confirmation from "./confirmation";
 import { Settings } from "lucide-react";
 import ChangePassword from "./change-password";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import CampusSelect from "./campus-select";
 
 const AvatarMenu = () => {
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,6 +34,18 @@ const AvatarMenu = () => {
           Settings
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onSelect={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <CampusSelect>
+            <div className="flex justify-between w-full">
+              Switch password
+              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            </div>
+          </CampusSelect>
+        </DropdownMenuItem>
         <DropdownMenuItem
           onSelect={(e) => {
             e.preventDefault();
@@ -56,7 +72,13 @@ const AvatarMenu = () => {
           </Confirmation>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            signOut({ redirect: false }).then(() => {
+              router.push("/");
+            });
+          }}
+        >
           Log out
           <DropdownMenuShortcut>⇧⌘L</DropdownMenuShortcut>
         </DropdownMenuItem>
